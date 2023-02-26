@@ -10,6 +10,9 @@ __license__ = "MIT"
 from fei.ppds import Thread
 from time import sleep
 
+_in = []
+num = []
+
 
 def process(num_threads: int, thread_id: int):
     """
@@ -18,10 +21,7 @@ def process(num_threads: int, thread_id: int):
     @param num_threads: number of threads
     @param thread_id: ID of current thread
     """
-    # array of numbers assigned to threads which determines in what order will threads execute critical section
-    num = [0] * num_threads
-    # array used to prevent execution of critical section by thread without assigned number
-    _in = [False] * num_threads
+    global _in, num
 
     # prevention of execution of critical section by thread before assigning it a number
     _in[thread_id] = True
@@ -37,7 +37,8 @@ def process(num_threads: int, thread_id: int):
             pass
         # checking if the current thread is next in line to execute critical section
         # if not wait for the appropriate thread/s to execute critical section first
-        while num[i] != 0 and (num[i] < num[thread_id] or (num[i] == num[thread_id] and i < thread_id)):
+        while num[i] != 0 and (
+                num[i] < num[thread_id] or (num[i] == num[thread_id] and i < thread_id)):
             pass
 
     # execute critical section
@@ -50,5 +51,10 @@ def process(num_threads: int, thread_id: int):
 
 if __name__ == '__main__':
     NUM_THREADS = 4
+    # array of numbers assigned to threads which determines in what order will threads execute critical section
+    num = [0] * NUM_THREADS
+    # array used to prevent execution of critical section by thread without assigned number
+    _in = [False] * NUM_THREADS
+
     threads = [Thread(process, NUM_THREADS, i) for i in range(NUM_THREADS)]
     [t.join() for t in threads]
