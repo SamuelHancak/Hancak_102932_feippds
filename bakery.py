@@ -37,7 +37,7 @@ def process(num_threads: int, thread_id: int):
             pass
         # checking if the current thread is next in line to execute critical section
         # if not wait for the appropriate thread/s to execute critical section first
-        while num[i] != 0 and (num[i] < num[thread_id] or (num[i] == num[thread_id] and thread_id < i)):
+        while num[i] != 0 and (num[i] < num[thread_id] or (num[i] == num[thread_id] and i < thread_id)):
             pass
 
     # execute critical section
