@@ -1,4 +1,4 @@
-# 🎓 Assignment 1
+# Assignment 1
 
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-blue.svg)](https://conventionalcommits.org)
@@ -40,7 +40,7 @@ computing.
 <hr>
 <hr>
 
-# 🧑‍💻 Solution
+## 🧑‍💻 Solution
 
 The implementation of the algorithm can be found in
 file [bakery.py](https://github.com/SamuelHancak/Hancak_102932D_feippds/blob/01/bakery.py).
