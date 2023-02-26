@@ -1,6 +1,6 @@
-"""This module contains an implementation of Bakery algorythm.
+"""This module contains an implementation of Bakery algorithm.
 
-Simple implementation of the Bakery algorythm using Threads from fei.ppds library.
+Implementation of the Bakery algorithm and an example of its usage by using Threads from fei.ppds library.
 """
 
 __author__ = "Samuel Hancak"
