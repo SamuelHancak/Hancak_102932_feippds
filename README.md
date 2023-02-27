@@ -92,5 +92,16 @@ variables but were defined in the `process()` function only
 <hr>
 <hr>
 
+## ⚙️ Usage
+
+1. Install the `fei.ppds` library by running `pip install fei.ppds` in your command line interface
+2. Copy the code into a new Python file, e.g. `bakery.py`
+3. Open a command line interface in the same directory as the `bakery.py` file
+4. Run the script by typing `python bakery.py` in the command line interface and pressing Enter
+5. The script will create four threads and run the `process` function
+
+<hr>
+<hr>
+
 [👆 Back to top](#assignment-1)
 
