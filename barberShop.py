@@ -101,7 +101,6 @@ def customer(i, shared):
         shared.mutex.lock()
         if shared.waiting_room < SIZE_OF_WAITING_ROOM:
             shared.waiting_room += 1
-            # print(f"CUSTOMER {i}: Is waiting in room - {shared.waiting_room}")
             waiting_in_room(i, shared)
             shared.mutex.unlock()
         else:
