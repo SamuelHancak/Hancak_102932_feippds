@@ -44,6 +44,56 @@ in a mutually exclusive manner to prevent race conditions and deadlocks.
 
 ## 🧑‍💻 Solution
 
+In order to implement the solution, we use the following synchronization tools:
+
+* **Mutex**: used to provide mutual exclusion for the shared variables
+* **Semaphore**: used to signal between the barber and the customers
+* **Thread**: used to represent the barber and the customers
+
+To implement this problem, we define a `Shared` class that contains all the shared variables between the barber and
+customers. The class contains the following variables:
+
+* `mutex`: a mutex lock to provide mutual exclusion for the shared variables
+* `waiting_room`: the number of customers waiting in the waiting room
+* `customer`: a semaphore to signal the barber when a customer arrives
+* `barber`: a semaphore to signal the customer when the barber is ready to serve him
+* `customer_done`: a semaphore to signal the barber when the customer is done
+* `barber_done`: a semaphore to signal the customer when the barber is done
+
+We defined also helper functions that simulate different actions, such as `get_haircut`, `cut_hair`, `balk`,
+`growing_hair`, and `waiting_in_room`. These functions simulate the time needed for a customer to get a haircut, the
+barber to cut hair, and for the hair to grow back.
+
+We use the following global variables to define initial conditions of the barber shop:
+
+* `NUM_OF_CUSTOMERS`: an integer representing the total number of customers that will visit the barber shop. (set to `5`
+  by default)
+* `SIZE_OF_WAITING_ROOM`: an integer representing the maximum number of customers that can wait in the waiting room at
+  any given time. (set to `3` by default)
+* `RANDOMNESS`: an integer that determines the amount of randomness in the program, which affects the time it takes for
+  a customer to get a haircut or for the barber to cut hair. (set to `5` by default)
+
+The main functions of the code are `customer()` and `barber()`.
+
+The `customer()` function simulates a customer's behavior.
+If there is space in the waiting room, the customer enters the waiting room, signals the barber that they are waiting,
+waits for the barber to cut their hair, and leaves the waiting room. If there is no space in the waiting room, the
+customer balks and leaves the barber shop. After getting a haircut, the customer waits for their hair to grow back.
+
+The `barber()` function simulates the barber's behavior. If there are no customers in the waiting room, the barber
+sleeps. When a customer arrives, the barber cuts their hair and waits for them to leave.
+
+The `main()` function initializes the shared variables, creates the threads for the customers and the barber, and
+starts them. It joins all the threads and waits for them to complete.
+
+The expected output can vary due to the randomness introduced by the `randint()` function. Each time the code is
+executed, the output will likely be different. However, the general output should be in form of printed message in a
+such form (with initial setup of variables set as described above):
+
+```
+
+```
+
 <hr>
 <hr>
 
