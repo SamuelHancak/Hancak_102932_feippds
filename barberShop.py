@@ -21,13 +21,17 @@ from random import randint
 
 NUM_OF_CUSTOMERS = 5
 SIZE_OF_WAITING_ROOM = 3
-# randomness of function execution is decided by the `randint()` function in range 1 and `RANDOMNESS` variable
-RANDOMNESS = 5
+RANDOMNESS = 5  # time of functions execution is randomised by this variable
 
 
 class Shared(object):
 
     def __init__(self):
+        """
+        Class constructor initializes 4 semaphores
+        for barber and customer states, creates Mutex object,
+        and waiting room counter
+        """
         self.mutex = Mutex()
         self.waiting_room = 0
         self.customer = Semaphore(0)
@@ -43,15 +47,15 @@ def get_haircut(i):
     @param i: Index of current customer
     """
     print(f"CUSTOMER {i}: Gets haircut")
-    sleep(randint(1, RANDOMNESS) / 10)
+    sleep(randint(1, RANDOMNESS) / 10)  # simulating time of execution
 
 
 def cut_hair():
     """
     Simulates time and prints info when barber cuts customer's hair
     """
-    print('BARBER Cuts hair')
-    sleep(randint(1, RANDOMNESS) / 10)
+    print('BARBER: Cuts hair')
+    sleep(randint(1, RANDOMNESS) / 10)  # simulating time of execution
 
 
 def balk(i):
@@ -61,7 +65,7 @@ def balk(i):
     @param i: Index of current customer
     """
     print(f"CUSTOMER {i}: Walks away 'cause waiting room is full")
-    sleep(randint(1, RANDOMNESS) / 10)
+    sleep(randint(1, RANDOMNESS) / 10)  # simulating time of execution
 
 
 def growing_hair(i):
@@ -72,7 +76,7 @@ def growing_hair(i):
     @param i: Index of current customer
     """
     print(f"CUSTOMER {i}: Is growing his hair")
-    sleep(randint(1, RANDOMNESS) / 10)
+    sleep(randint(1, RANDOMNESS) / 10)  # simulating time of execution
 
 
 def waiting_in_room(i, shared):
@@ -82,8 +86,8 @@ def waiting_in_room(i, shared):
     @param i: Index of current customer
     @param shared: Shared object of needed variables
     """
-    print(f"CUSTOMER {i}: Is waiting in room - rooms left {SIZE_OF_WAITING_ROOM - shared.waiting_room}")
-    sleep(randint(1, RANDOMNESS) / 10)
+    print(f"CUSTOMER {i}: Is waiting in room - places left {SIZE_OF_WAITING_ROOM - shared.waiting_room}")
+    sleep(randint(1, RANDOMNESS) / 10)  # simulating time of execution
 
 
 def customer(i, shared):
@@ -95,17 +99,17 @@ def customer(i, shared):
     @param i: Index of current customer
     @param shared: Shared object of needed variables
     """
-
     while True:
         # access to waiting room
-        shared.mutex.lock()
+        shared.mutex.lock()  # ensure that only one thread can access and modify `waiting_room` at a time
+        # checking if there is a place for another customer in the waiting room
         if shared.waiting_room < SIZE_OF_WAITING_ROOM:
             shared.waiting_room += 1
             waiting_in_room(i, shared)
-            shared.mutex.unlock()
+            shared.mutex.unlock()  # lock is released after the critical section of the code is executed
         else:
-            shared.mutex.unlock()
-            balk(i)
+            shared.mutex.unlock()  # lock is released after the critical section of the code is executed
+            balk(i)  # if the waiting room is full customer walks away
             continue
 
         # rendezvous 1
@@ -119,11 +123,11 @@ def customer(i, shared):
         shared.barber_done.wait()
 
         # leave waiting room
-        shared.mutex.lock()
+        shared.mutex.lock()  # ensure that only one thread can access and modify `waiting_room` at a time
         shared.waiting_room -= 1
-        shared.mutex.unlock()
+        shared.mutex.unlock()  # lock is released after the critical section of the code is executed
 
-        # wait for hair to grow again
+        # customer waits for hair to grow again
         growing_hair(i)
 
 
@@ -135,7 +139,6 @@ def barber(shared):
 
     @param shared: Shared object of needed variables
     """
-
     while True:
         # rendezvous 1
         shared.customer.wait()
@@ -150,7 +153,7 @@ def barber(shared):
 
 def main():
     shared = Shared()  # object of shared variables
-    customers = []  # array of customers - for each customer is appended Thread to array
+    customers = []  # array of customers - for each customer is appended Thread to the array
 
     for i in range(NUM_OF_CUSTOMERS):
         customers.append(Thread(customer, i, shared))
