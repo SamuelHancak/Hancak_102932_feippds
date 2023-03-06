@@ -91,9 +91,25 @@ executed, the output will likely be different. However, the general output shoul
 such form (with initial setup of variables set as described above):
 
 ```
-
+CUSTOMER 0: Is waiting in room - places left 2
+CUSTOMER 1: Is waiting in room - places left 1
+BARBER: Cuts hair
+CUSTOMER 0: Gets haircut
+CUSTOMER 2: Is waiting in room - places left 0
+CUSTOMER 3: Walks away 'cause waiting room is full
+CUSTOMER 4: Walks away 'cause waiting room is full
+BARBER: Cuts hair
+CUSTOMER 0: Is growing his hair
+CUSTOMER 1: Gets haircut
+CUSTOMER 0: Is waiting in room - places left 0
 ```
 
+The use of semaphores, on the lines `116`, `117`, `122`, `123`, `144`, `145`, `150` and `151`, and mutexes, on the
+lines `104` and `126` (and it's corresponding unlocks) ensures that only one thread can access a shared variable or
+resource at a time, preventing race conditions and ensuring thread safety. The correctness of the solution can be
+verified by observing that each customer gets serviced exactly once (before his hair has grown again) and the barber
+serves only one customer at a time. Additionally, there are no race conditions or deadlocks in the code, ensuring that
+it operates correctly and efficiently.
 <hr>
 <hr>
 
@@ -104,6 +120,16 @@ such form (with initial setup of variables set as described above):
 3. Open a command line interface in the same directory as the `barberShop.py` file
 4. Run the script by typing `python barberShop.py` in the command line interface and pressing Enter
 5. The script will create four threads and run the `main` function
+
+<hr>
+<hr>
+
+## 📖 Sources
+
+* [Wikipedia](https://en.wikipedia.org/wiki/Sleeping_barber_problem)
+* [GeeksForGeeks](https://www.geeksforgeeks.org/sleeping-barber-problem-in-process-synchronization/)
+* [Baeldung](https://www.baeldung.com/cs/sleeping-barber-problem)
+* [YouTube](https://www.youtube.com/@paralelneprogramovanieadis9457)
 
 <hr>
 <hr>
