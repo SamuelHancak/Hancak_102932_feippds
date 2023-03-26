@@ -75,6 +75,7 @@ def cook(shared, cook_id):
     :param shared: Object representing the shared resources
     :param cook_id: ID of the cook thread
     """
+
     while True:
         shared.empty_pot.wait()  # Wait for an empty pot signal from the savages
         shared.cook_mutex.lock()  # Lock the pot
@@ -97,6 +98,7 @@ def savage(shared, savage_id):
     :param shared: Object representing the shared resources
     :param savage_id: ID of the savage thread
     """
+    
     while True:
         # Wait for all savages to arrive before attempting to eat
         shared.barrier.wait(each=f'Savage {savage_id} come',
