@@ -19,7 +19,7 @@ import time
 from grayscale_gpu import GrayscaleConverterGPU
 from grayscale_cpu import GrayscaleConverterCPU
 
-IMAGE_PATH = 'image590x350.jpg'
+IMAGE_PATH = 'assets/image590x350.jpg'
 
 if __name__ == '__main__':
     # Load the input image and resize it to the specified size
@@ -44,9 +44,9 @@ if __name__ == '__main__':
 
     # Save the resulting grayscale images to disk
     gray_gpu_image = Image.fromarray(gray_gpu, 'L')
-    gray_gpu_image.save('image_gpu590x350.jpg')
+    gray_gpu_image.save('assets/image_gpu590x350.jpg')
     gray_cpu_image = Image.fromarray(gray_cpu, 'L')
-    gray_cpu_image.save('image_cpu590x350.jpg')
+    gray_cpu_image.save('assets/image_cpu590x350.jpg')
 
     print(f"GPU executed task in time: {end_gpu - start_gpu}s")
     print(f"CPU executed task in time: {end_cpu - start_cpu}s")
