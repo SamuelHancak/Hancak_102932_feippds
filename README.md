@@ -77,29 +77,29 @@ Time of executions for 5 different images with different shapes is compared in t
 *The times of execution for GPU are longer because of my hardware*
 
 <div style="display: flex">
-    <img src="image590x350.jpg" width="200" />
-    <img src="image_cpu590x350.jpg" width="200"/>
-    <img src="image_gpu590x350.jpg" width="200"/>
+    <img src="assets/image590x350.jpg" width="200" />
+    <img src="assets/image_cpu590x350.jpg" width="200"/>
+    <img src="assets/image_gpu590x350.jpg" width="200"/>
 </div>
 <div style="display: flex">
-    <img src="image1920x1080.jpeg" width="200"/>
-    <img src="image_cpu1920x1080.jpg" width="200"/>
-    <img src="image_gpu1920x1080.jpg" width="200"/>
+    <img src="assets/image1920x1080.jpeg" width="200"/>
+    <img src="assets/image_cpu1920x1080.jpg" width="200"/>
+    <img src="assets/image_gpu1920x1080.jpg" width="200"/>
 </div>
 <div style="display: flex">
-    <img src="image2048x1280.jpg" width="200"/>
-    <img src="image_cpu2048x1280.jpg" width="200"/>
-    <img src="image_gpu2048x1280.jpg" width="200"/>
+    <img src="assets/image2048x1280.jpg" width="200"/>
+    <img src="assets/image_cpu2048x1280.jpg" width="200"/>
+    <img src="assets/image_gpu2048x1280.jpg" width="200"/>
 </div>
 <div style="display: flex">
-    <img src="image2899x1933.jpeg" width="200"/>
-    <img src="image_cpu2899x1933.jpg" width="200"/>
-    <img src="image_gpu2899x1933.jpg" width="200"/>
+    <img src="assets/image2899x1933.jpeg" width="200"/>
+    <img src="assets/image_cpu2899x1933.jpg" width="200"/>
+    <img src="assets/image_gpu2899x1933.jpg" width="200"/>
 </div>
 <div style="display: flex">
-    <img src="image6000x4000.jpeg" width="200"/>
-    <img src="image_cpu6000x4000.jpg" width="200"/>
-    <img src="image_gpu6000x4000.jpg" width="200"/>
+    <img src="assets/image6000x4000.jpeg" width="200"/>
+    <img src="assets/image_cpu6000x4000.jpg" width="200"/>
+    <img src="assets/image_gpu6000x4000.jpg" width="200"/>
 </div>
 
 *Images are resized to save place in documentation, images in original sizes can be found in the repository*
